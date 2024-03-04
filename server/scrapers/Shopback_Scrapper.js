@@ -3,9 +3,8 @@ const helperFunctions = require("../helperFunctions/helperFunctions");
 const { Scrapper } = require("./scrapper");
 
 class Shopback_Scrapper extends Scrapper {
-  async createJobSearchQuery(listOfKeywords, jobSearchQueryObject) {
+  async createCompanyJobSearchQuery(listOfKeywords, jobSearchQueryObject) {
     try {
-      //Create the headless driver
       let scrapper = new Scrapper();
       let driver = await scrapper.createDriver();
       try {
@@ -27,22 +26,12 @@ class Shopback_Scrapper extends Scrapper {
           jobOpenings.push(await job.getText());
         }
 
-        let jobOpeningsArr = [];
-        for (const keyPhrase of listOfKeywords) {
-          console.log("keyword in scrapper is " + keyPhrase);
-          let filteredJobs = helperFunctions.getFilteredJobs(
-            keyPhrase,
-            jobOpenings
-          );
-          jobOpeningsArr.push(filteredJobs);
-        }
-        jobSearchQueryObject.companyResults.push({
-          companyName: "Shopback",
-          keywordResults: listOfKeywords.map((keyword, index) => ({
-            keyword,
-            results: jobOpeningsArr[index],
-          })),
-        });
+        helperFunctions.saveCompanyResults(
+          jobOpenings,
+          jobSearchQueryObject,
+          "Shopback",
+          listOfKeywords
+        );
       } catch (err) {
         console.error(err);
       } finally {

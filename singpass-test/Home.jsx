@@ -63,35 +63,35 @@ function Home() {
           <br></br>
           <input
             type="checkbox"
-            id="standard-chartered"
+            id="Shopback"
             name="companies[]"
-            value="standard-chartered"
+            value="Shopback"
             onChange={handleCheckboxChange}
-            checked={selectedCompanies.includes("standard-chartered")}
+            checked={selectedCompanies.includes("Shopback")}
           />
-          <label htmlFor="standard-chartered">Standard Chartered</label>
+          <label htmlFor="Shopback">Shopback</label>
           <br></br>
 
           <input
             type="checkbox"
-            id="apple"
+            id="Cloudflare"
             name="companies[]"
-            value="apple"
+            value="Cloudflare"
             onChange={handleCheckboxChange}
-            checked={selectedCompanies.includes("apple")}
+            checked={selectedCompanies.includes("Cloudflare")}
           />
-          <label htmlFor="apple">Apple</label>
+          <label htmlFor="Cloudflare">Cloudflare</label>
           <br></br>
 
           <input
             type="checkbox"
-            id="dxdhub"
+            id="Visa"
             name="companies[]"
-            value="dxdhub"
+            value="Visa"
             onChange={handleCheckboxChange}
-            checked={selectedCompanies.includes("dxdhub")}
+            checked={selectedCompanies.includes("Visa")}
           />
-          <label htmlFor="dxdhub">DxDHub</label>
+          <label htmlFor="Visa">Visa</label>
           <br></br>
 
           <button type="submit" className="rounded">

@@ -15,4 +15,24 @@ function getFilteredJobs(keyPhrase, jobList) {
   return filteredJobList;
 }
 
-module.exports = { parseKeyWords, getFilteredJobs };
+function saveCompanyResults(
+  jobOpenings,
+  jobSearchQueryObject,
+  companyName,
+  listOfKeywords
+) {
+  let jobOpeningsArr = [];
+  for (const keyPhrase of listOfKeywords) {
+    let filteredJobs = this.getFilteredJobs(keyPhrase, jobOpenings);
+    jobOpeningsArr.push(filteredJobs);
+  }
+  jobSearchQueryObject.companyResults.push({
+    companyName: companyName,
+    keywordResults: listOfKeywords.map((keyword, index) => ({
+      keyword,
+      results: jobOpeningsArr[index],
+    })),
+  });
+}
+
+module.exports = { parseKeyWords, getFilteredJobs, saveCompanyResults };
