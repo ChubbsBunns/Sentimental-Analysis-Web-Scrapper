@@ -4,8 +4,8 @@ var cors = require("cors");
 
 const EmployeeModel = require("./models/Employee");
 
-import { Amplify } from "aws-amplify";
-import awsExports from "./aws-exports";
+const { Amplify } = require("aws-amplify");
+const awsExports = require("./aws-exports.js");
 
 const { registerUser } = require("./backend_requests/userManagement");
 const HelperFunctions = require("./backend_requests/webscrapping");
@@ -19,9 +19,11 @@ app.use(express.json());
 
 Amplify.configure({
   Auth: {
-    region: awsExports.REGION,
-    userPoolId: awsExports.USER_POOL_ID,
-    userPoolWebClientId: awsExports.USER_POOL_APP_CLIENT_ID,
+    Cognito: {
+      region: awsExports.REGION,
+      userPoolId: awsExports.USER_POOL_ID,
+      userPoolWebClientId: awsExports.USER_POOL_APP_CLIENT_ID,
+    },
   },
 });
 
